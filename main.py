@@ -6,6 +6,7 @@ from kivy.uix.textinput import TextInput
 from kivy.uix.button import Button
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.core.window import Window
+from kivy.uix.popup import Popup
 
 class LoginScreen(BoxLayout):
 	def __init__(self, **var_args):
@@ -35,11 +36,6 @@ class LoginScreen(BoxLayout):
 		self.password = TextInput(password=True, multiline=False, background_color=(0.3, 0.3, 0.3, 1), foreground_color=(1, 1, 1, 1), font_size=18, size_hint_y=None, height=40, width=200)
 		grid_layout.add_widget(self.password)
 
-		# Confirm Password
-		grid_layout.add_widget(Label(text='Confirm Password', color=(1, 1, 1, 1), font_size=18, size_hint_y=None, height=30, width=150))
-		self.confirm_password = TextInput(password=True, multiline=False, background_color=(0.3, 0.3, 0.3, 1), foreground_color=(1, 1, 1, 1), font_size=18, size_hint_y=None, height=40, width=200)
-		grid_layout.add_widget(self.confirm_password)
-
 		# Add grid layout to the main layout
 		self.add_widget(grid_layout)
 
@@ -59,10 +55,37 @@ class WelcomeScreen(BoxLayout):
 	def __init__(self, **var_args):
 		super(WelcomeScreen, self).__init__(**var_args)
 		self.orientation = 'vertical'
-		self.add_widget(Label(text='Welcome!', font_size=50, size_hint=(None, None), height=100))
 		self.padding = [50, 50, 50, 50]
 		self.spacing = 20
+		self.size_hint = (None, None)
+		self.width = 400
+		self.height = 300
 		self.pos_hint = {'center_x': 0.5, 'center_y': 0.5}
+
+		# Center content in the window
+		content_layout = BoxLayout(orientation='vertical', size_hint=(None, None), width=400, height=300)
+		content_layout.pos_hint = {'center_x': 0.5, 'center_y': 0.5}
+
+		# Buttons for Hannes and Leo
+		button_layout = BoxLayout(orientation='horizontal', size_hint=(None, None), height=60, width=400, spacing=20)
+		hannes_btn = Button(text="Hannes", background_color=(1, 0.4, 0.7, 1), size_hint=(None, None), width=300, height=400)
+		hannes_btn.bind(on_press=self.show_hannes_message)
+		button_layout.add_widget(hannes_btn)
+
+		leo_btn = Button(text="Leo", background_color=(0.4, 0.6, 1, 1), size_hint=(None, None), width=300, height=400)
+		leo_btn.bind(on_press=self.show_leo_message)
+		button_layout.add_widget(leo_btn)
+
+		content_layout.add_widget(button_layout)
+		self.add_widget(content_layout)
+
+	def show_hannes_message(self, instance):
+		popup = Popup(title='Message', content=Label(text='Du Schwuchtl!'), size_hint=(None, None), size=(300, 200))
+		popup.open()
+
+	def show_leo_message(self, instance):
+		popup = Popup(title='Message', content=Label(text='King Kong'), size_hint=(None, None), size=(300, 200))
+		popup.open()
 
 class MyApp(App):
 	def build(self):
