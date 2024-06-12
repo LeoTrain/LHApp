@@ -9,9 +9,9 @@ Unsere coole App
 
 ## To do:
  -[ ] Datenbank einrichtung für login</br>
-    -[ ] verschlüsselung checken 
-    -[ ] sonst für daweil de in Files schreiben und verschlüsseln
+    -[ ] verschlüsselung checken</br>
+    -[ ] sonst für daweil de in Files schreiben und verschlüsseln</br>
 
 ## Done:
- -[x] klassen in eigene Files
- -[x] simple credential check function und im login screen eingebaut
+ -[x] klassen in eigene Files</br>
+ -[x] simple credential check function und im login screen eingebaut</br>
