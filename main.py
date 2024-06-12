@@ -1,0 +1,15 @@
+from kivy.app import App
+from kivy.uix.screenmanager import ScreenManager
+from screens.py.LoginScreen import LoginScreen
+from screens.py.WelcomeScreen import WelcomeScreen
+
+
+class MainApp(App):
+    def build(self):
+        sm = ScreenManager()
+        sm.add_widget(LoginScreen(name='login'))
+        sm.add_widget(WelcomeScreen(name='welcome'))
+        return sm
+
+if __name__ == '__main__':
+    MainApp().run()
