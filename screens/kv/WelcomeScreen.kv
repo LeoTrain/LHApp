@@ -27,7 +27,7 @@
       BoxLayout:
         orientation: 'horizontal'
         size_hint: None, None
-        width: 500
+        width: 750
         height: 500
         spacing: 20
         pos_hint: {'center_x': 0.5, 'center_y': 0.5}
@@ -46,3 +46,10 @@
           height: 250
           background_color: 0.4, 0.6, 1, 1
           on_press: root.show_leo_message()
+        Button:
+          text: "page one"
+          size_hint: None, None
+          width: 250
+          height: 250
+          background_color: 0.4, 0.6, 1, 1
+          on_press: root.go_to_page()

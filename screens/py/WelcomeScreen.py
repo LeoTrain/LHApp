@@ -27,3 +27,8 @@ class WelcomeScreen(Screen):
     def show_leo_message(self):
         popup = Popup(title='Message', content=Label(text='Herscher der Welt'), size_hint=(None, None), size=(300, 200))
         popup.open()
+        
+    def go_to_page(self):
+        app = App.get_running_app()
+        self.manager.current = 'page one'
+    
