@@ -2,6 +2,7 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.label import Label
 from kivy.uix.button import Button
 from kivy.uix.popup import Popup
+from kivy.app import App
 
 class WelcomeScreen(BoxLayout):
 	def __init__(self, **var_args):
@@ -13,11 +14,16 @@ class WelcomeScreen(BoxLayout):
 		self.width = 400
 		self.height = 300
 		self.pos_hint = {'center_x': 0.5, 'center_y': 0.5}
+		self.app = App.get_running_app()
 
 		# Center content in the window
 		content_layout = BoxLayout(orientation='vertical', size_hint=(None, None), width=400, height=300)
 		content_layout.pos_hint = {'center_x': 0.5, 'center_y': 0.5}
 
+		welcome_message = self.get_welcome_message()
+		welcome_label = Label(text=welcome_message, size_hint=(None, None), height=50, width=400)
+		content_layout.add_widget(welcome_label)
+  
 		# Buttons for Hannes and Leo
 		button_layout = BoxLayout(orientation='horizontal', size_hint=(None, None), height=60, width=400, spacing=20)
 		hannes_btn = Button(text="Hannes", background_color=(1, 0.4, 0.7, 1), size_hint=(None, None), width=300, height=400)
@@ -38,3 +44,11 @@ class WelcomeScreen(BoxLayout):
 	def show_leo_message(self, instance):
 		popup = Popup(title='Message', content=Label(text='Herscher der Welt'), size_hint=(None, None), size=(300, 200))
 		popup.open()
+
+	def get_welcome_message(self):
+		username = self.app.username
+		messages = {
+				'user': "Welcome, User! Glad to see you again.",
+				'user2': "Hello, User2! Welcome back.",
+		}
+		return messages.get(username, "Welcome!")

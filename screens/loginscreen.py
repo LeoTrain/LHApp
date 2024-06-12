@@ -52,6 +52,7 @@ class LoginScreen(BoxLayout):
 		
 		if self.check_credentials(username=username, password=password):
 			app = App.get_running_app()
+			app.username = username
 			app.root.current = 'welcome'
 		else:
 			popup = Popup(title='Error', content=Label(text='Wrong username or password, try again.'), size_hint=(None, None), size=(300, 200))

@@ -1,0 +1,81 @@
+<LoginScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: [50, 50, 50, 50]
+        spacing: 20
+        size_hint: None, None
+        width: 400
+        height: 300
+        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+        
+        GridLayout:
+            cols: 2
+            spacing: 10
+            size_hint_y: None
+            height: self.minimum_height
+
+            Label:
+                text: 'User Name'
+                color: 1, 1, 1, 1
+                font_size: 18
+                size_hint_y: None
+                height: 30
+                width: 150
+            TextInput:
+                id: username
+                multiline: False
+                background_color: 0.3, 0.3, 0.3, 1
+                foreground_color: 1, 1, 1, 1
+                font_size: 18
+                size_hint_y: None
+                height: 40
+                width: 200
+
+            Label:
+                text: 'Password'
+                color: 1, 1, 1, 1
+                font_size: 18
+                size_hint_y: None
+                height: 30
+                width: 150
+            TextInput:
+                id: password
+                password: True
+                multiline: False
+                background_color: 0.3, 0.3, 0.3, 1
+                foreground_color: 1, 1, 1, 1
+                font_size: 18
+                size_hint_y: None
+                height: 40
+                width: 200
+
+        BoxLayout:
+            size_hint_y: None
+            height: 20
+
+        Button:
+            text: "Submit"
+            size_hint: None, None
+            width: 200
+            height: 50
+            background_color: 0.1, 0.5, 0.8, 1
+            font_size: 18
+            color: 1, 1, 1, 1
+            on_press: root.on_submit(username.text, password.text)
+
+<WelcomeScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            id: welcome_label
+            text: "Welcome!"
+        BoxLayout:
+            orientation: 'horizontal'
+            Button:
+                text: "Hannes"
+                background_color: 1, 0.4, 0.7, 1
+                on_press: root.show_hannes_message()
+            Button:
+                text: "Leo"
+                background_color: 0.4, 0.6, 1, 1
+                on_press: root.show_leo_message()

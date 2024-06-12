@@ -4,6 +4,10 @@ from loginscreen import LoginScreen
 from welcomescreen import WelcomeScreen
 
 class MyApp(App):
+	def __init__(self, **kwargs):
+		super(MyApp, self).__init__(**kwargs)
+		self.username = None
+  
 	def build(self):
 		sm = ScreenManager()
 		login_screen = Screen(name='login')
