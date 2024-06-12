@@ -32,9 +32,9 @@ class WelcomeScreen(BoxLayout):
 		self.add_widget(content_layout)
 
 	def show_hannes_message(self, instance):
-		popup = Popup(title='Message', content=Label(text='King!'), size_hint=(None, None), size=(300, 200))
+		popup = Popup(title='Message', content=Label(text='Pedophile Sau'), size_hint=(None, None), size=(300, 200))
 		popup.open()
 
 	def show_leo_message(self, instance):
-		popup = Popup(title='Message', content=Label(text='Du Schwuchtel!'), size_hint=(None, None), size=(300, 200))
+		popup = Popup(title='Message', content=Label(text='Herscher der Welt'), size_hint=(None, None), size=(300, 200))
 		popup.open()
