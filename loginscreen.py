@@ -7,12 +7,6 @@ from kivy.uix.button import Button
 from kivy.uix.popup import Popup
 from kivy.core.window import Window
 
-def check_credentials(username, password):
-  if username == "user" and password == "root":
-    return True
-  else:
-    return False
-
 class LoginScreen(BoxLayout):
 	def __init__(self, **var_args):
 		super(LoginScreen, self).__init__(**var_args)
@@ -56,10 +50,21 @@ class LoginScreen(BoxLayout):
 		username = self.username_input.text
 		password = self.password_input.text
 		
-		if check_credentials(username=username, password=password):
+		if self.check_credentials(username=username, password=password):
 			app = App.get_running_app()
 			app.root.current = 'welcome'
 		else:
 			popup = Popup(title='Error', content=Label(text='Wrong username or password, try again.'), size_hint=(None, None), size=(300, 200))
-			popup.open()			
-    
+			popup.open()		
+
+	def check_credentials(self, username, password):
+		credentials = self.load_credentials("credentials.txt")
+		return credentials.get(username) == password
+	
+	def load_credentials(self, file_path):
+		credentials = {}
+		with open(file_path, 'r') as file:
+			for line in file:
+				user, pwd = line.strip().split(',')
+				credentials[user] = pwd
+		return credentials
