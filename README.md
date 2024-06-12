@@ -8,10 +8,12 @@ Unsere coole App
 ╰─> python3 main.py
 
 ## To do:
- -[ ] Datenbank einrichtung für login</br>
-    -[ ] verschlüsselung checken</br>
-    -[ ] sonst für daweil de in Files schreiben und verschlüsseln</br>
+- [ ] Datenbank einrichtung für login</br>
+  - [ ] verschlüsseln
+  - [ ] verschlüsselung checken</br>
+
 
 ## Done:
- -[x] klassen in eigene Files</br>
- -[x] simple credential check function und im login screen eingebaut</br>
+- [x] klassen in eigene Files</br>
+- [x] simple credential check function und im login screen eingebaut</br>
+- [x] sonst für daweil de in Files schreiben</br>
