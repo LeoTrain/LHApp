@@ -1,0 +1,114 @@
+<LoginScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: [50, 50, 50, 50]
+        spacing: 20
+        size_hint: None, None
+        width: 600  # Augmenter la largeur
+        height: 500  # Augmenter la hauteur
+        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+        
+        GridLayout:
+            cols: 2
+            spacing: 10
+            size_hint_y: None
+            height: self.minimum_height
+
+            Label:
+                text: 'User Name'
+                color: 1, 1, 1, 1
+                font_size: 50  # Augmenter la taille de la police
+                size_hint_y: None
+                height: 100  # Augmenter la hauteur
+                width: 300  # Augmenter la largeur
+            TextInput:
+                id: username
+                multiline: False
+                background_color: 0.3, 0.3, 0.3, 1
+                foreground_color: 1, 1, 1, 1
+                font_size: 50  # Augmenter la taille de la police
+                size_hint_y: None
+                height: 75  # Augmenter la hauteur
+                width: 300  # Augmenter la largeur
+
+            Label:
+                text: 'Password'
+                color: 1, 1, 1, 1
+                font_size: 50  # Augmenter la taille de la police
+                size_hint_y: None
+                height: 100  # Augmenter la hauteur
+                width: 300  # Augmenter la largeur
+            TextInput:
+                id: password
+                password: True
+                multiline: False
+                background_color: 0.3, 0.3, 0.3, 1
+                foreground_color: 1, 1, 1, 1
+                font_size: 50  # Augmenter la taille de la police
+                size_hint_y: None
+                height: 75  # Augmenter la hauteur
+                width: 300  # Augmenter la largeur
+
+        BoxLayout:
+            size_hint_y: None
+            height: 20
+
+        Button:
+            text: "Submit"
+            size_hint: None, None
+            width: 250  # Augmenter la largeur
+            height: 70  # Augmenter la hauteur
+            background_color: 0.1, 0.5, 0.8, 1
+            font_size: 24  # Augmenter la taille de la police
+            color: 1, 1, 1, 1
+            on_press: root.on_submit(username.text, password.text)
+
+
+<WelcomeScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: [50, 50, 50, 50]
+        spacing: 20
+        size_hint: None, None
+        width: 700
+        height: 500
+        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint: None, None
+            width: 300
+            height: 300
+            spacing: 100
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+
+            Label:
+                id: welcome_label
+                text: "Welcome!"
+                size_hint: None, None
+                height: 50
+                pos_hint: {'center_x': 0.5}
+                font_size: 100
+
+            BoxLayout:
+                orientation: 'horizontal'
+                size_hint: None, None
+                width: 500
+                height: 500
+                spacing: 20
+                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+
+                Button:
+                    text: "Hannes"
+                    size_hint: None, None
+                    width: 250
+                    height: 250
+                    background_color: 1, 0.4, 0.7, 1
+                    on_press: root.show_hannes_message()
+                Button:
+                    text: "Leo"
+                    size_hint: None, None
+                    width: 250
+                    height: 250
+                    background_color: 0.4, 0.6, 1, 1
+                    on_press: root.show_leo_message()

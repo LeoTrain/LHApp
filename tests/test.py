@@ -42,16 +42,18 @@ class WelcomeScreen(Screen):
 
     def get_welcome_message(self, username):
         messages = {
-            'user': "Welcome, User1! Glad to see you again.",
-            'user2': "Hello, User2! Welcome back.",
+            'leo': "Salut bg, bien de te retrouver !",
+            'hannes': "Hallo du Schwuchtl, bis später !",
         }
         return messages.get(username, "Welcome!")
 
     def show_hannes_message(self):
-        print("Hannes button pressed")
+        popup = Popup(title='Message', content=Label(text='Pedophile Sau'), size_hint=(None, None), size=(300, 200))
+        popup.open()
 
     def show_leo_message(self):
-        print("Leo button pressed")
+        popup = Popup(title='Message', content=Label(text='Herscher der Welt'), size_hint=(None, None), size=(300, 200))
+        popup.open()
 
 class TestApp(App):
     def build(self):
