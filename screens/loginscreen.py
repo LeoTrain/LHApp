@@ -58,7 +58,7 @@ class LoginScreen(BoxLayout):
 			popup.open()		
 
 	def check_credentials(self, username, password):
-		credentials = self.load_credentials("credentials.txt")
+		credentials = self.load_credentials("data/credentials.txt")
 		return credentials.get(username) == password
 	
 	def load_credentials(self, file_path):

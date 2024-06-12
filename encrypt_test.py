@@ -2,11 +2,11 @@ from cryptography.fernet import Fernet
 
 def generate_key():
   key = Fernet.generate_key()
-  with open("secret.key", "wb") as key_file:
+  with open("data/secret.key", "wb") as key_file:
     key_file.write(key)
 
 def load_key():
-  return open("secret.key", "rb").read()
+  return open("data/secret.key", "rb").read()
 
 def encrypt_data(data, key):
   f = Fernet(key)
@@ -43,7 +43,7 @@ def add_user(username, password, file_path, key):
         file.write(encrypted_user + b',' + encrypted_pwd + b'\n')
       
 def main():
-    file_path = 'encrypted_credentials.txt'
+    file_path = 'data/encrypted_credentials.txt'
     key = load_key()
     
     # generate_key()

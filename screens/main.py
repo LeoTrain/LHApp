@@ -15,3 +15,5 @@ class MyApp(App):
 		sm.add_widget(welcome_screen)
 
 		return sm
+if __name__ == '__main__':
+	MyApp().run()

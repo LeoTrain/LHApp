@@ -1,2 +1,22 @@
-env
-__pycache__
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+env/
+
+# Editor configuration
+.vscode/
+.idea/
+
+# Sensible files
+secret.key
+*.env
+
+# Log files
+*.log
+
+# Credentials
+data/encrypted_credentials.txt
