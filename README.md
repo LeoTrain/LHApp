@@ -8,7 +8,7 @@ Unsere coole App
 ╰─> python3 main.py
 
 ## To do:
- -[ ] Datenbank einrichtung für login 
+ -[ ] Datenbank einrichtung für login</br>
     -[ ] verschlüsselung checken 
     -[ ] sonst für daweil de in Files schreiben und verschlüsseln
 
