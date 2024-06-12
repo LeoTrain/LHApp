@@ -4,7 +4,14 @@ from kivy.uix.gridlayout import GridLayout
 from kivy.uix.label import Label
 from kivy.uix.textinput import TextInput
 from kivy.uix.button import Button
+from kivy.uix.popup import Popup
 from kivy.core.window import Window
+
+def check_credentials(username, password):
+  if username == "user" and password == "root":
+    return True
+  else:
+    return False
 
 class LoginScreen(BoxLayout):
 	def __init__(self, **var_args):
@@ -26,13 +33,13 @@ class LoginScreen(BoxLayout):
 
 		# User Name
 		grid_layout.add_widget(Label(text='User Name', color=(1, 1, 1, 1), font_size=18, size_hint_y=None, height=30, width=150))
-		self.username = TextInput(multiline=False, background_color=(0.3, 0.3, 0.3, 1), foreground_color=(1, 1, 1, 1), font_size=18, size_hint_y=None, height=40, width=200)
-		grid_layout.add_widget(self.username)
+		self.username_input = TextInput(multiline=False, background_color=(0.3, 0.3, 0.3, 1), foreground_color=(1, 1, 1, 1), font_size=18, size_hint_y=None, height=40, width=200)
+		grid_layout.add_widget(self.username_input)
 
 		# Password
 		grid_layout.add_widget(Label(text='Password', color=(1, 1, 1, 1), font_size=18, size_hint_y=None, height=30, width=150))
-		self.password = TextInput(password=True, multiline=False, background_color=(0.3, 0.3, 0.3, 1), foreground_color=(1, 1, 1, 1), font_size=18, size_hint_y=None, height=40, width=200)
-		grid_layout.add_widget(self.password)
+		self.password_input = TextInput(password=True, multiline=False, background_color=(0.3, 0.3, 0.3, 1), foreground_color=(1, 1, 1, 1), font_size=18, size_hint_y=None, height=40, width=200)
+		grid_layout.add_widget(self.password_input)
 
 		# Add grid layout to the main layout
 		self.add_widget(grid_layout)
@@ -46,5 +53,13 @@ class LoginScreen(BoxLayout):
 		self.add_widget(submit_btn)
 
 	def on_submit(self, instance):
-		app = App.get_running_app()
-		app.root.current = 'welcome'
+		username = self.username_input.text
+		password = self.password_input.text
+		
+		if check_credentials(username=username, password=password):
+			app = App.get_running_app()
+			app.root.current = 'welcome'
+		else:
+			popup = Popup(title='Error', content=Label(text='Wrong username or password, try again.'), size_hint=(None, None), size=(300, 200))
+			popup.open()			
+    

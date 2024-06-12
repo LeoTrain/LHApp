@@ -5,14 +5,13 @@ Unsere coole App
 
 ## Benutzung
 
-╰─> source env/bin/activate
 ╰─> python3 main.py
 
-To do:
- 2. Datenbank einrichtung für login 
-    - verschlüsselung checken 
-    - sonst für daweil de in Files schreiben
-      und verschlüsseln
+## To do:
+ -[ ] Datenbank einrichtung für login 
+    -[ ] verschlüsselung checken 
+    -[ ] sonst für daweil de in Files schreiben und verschlüsseln
 
-Done:
- 1. klassen in eigene Files
+## Done:
+ -[x] klassen in eigene Files
+ -[x] simple credential check function und im login screen eingebaut
