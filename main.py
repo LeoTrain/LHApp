@@ -7,9 +7,9 @@ from screens.py.PageOne import PageOne
 class MainApp(App):
     def build(self):
         sm = ScreenManager()
+        sm.add_widget(PageOne(name='pageone'))
         sm.add_widget(LoginScreen(name='login'))
         sm.add_widget(WelcomeScreen(name='welcome'))
-        sm.add_widget(PageOne(name='page one'))
         return sm
 
 if __name__ == '__main__':

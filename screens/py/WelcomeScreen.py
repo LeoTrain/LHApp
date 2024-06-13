@@ -30,5 +30,5 @@ class WelcomeScreen(Screen):
         
     def go_to_page(self):
         app = App.get_running_app()
-        self.manager.current = 'page one'
+        self.manager.current = 'pageone'
     
