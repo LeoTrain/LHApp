@@ -1,7 +1,10 @@
-![logo](data/logo.png)
+<p align="center">
+  <img src="data/logo.png" alt="logo">
+</p>
 
 # LHApp
-Unsere coole App
+Unsere Super App
+
 > Hannes: Das leben ist unschön <br/>
 > Leo: Dann machen wir eine schöne App 
 
