@@ -35,7 +35,7 @@ class LoginScreen(tk.Frame):
         style.configure(
             "TLabel",
             background="#f0f0f0",
-            foreground="#f0f0f0",
+            foreground="#333333",
             font=("Arial", 12)
         )
 
@@ -54,6 +54,12 @@ class LoginScreen(tk.Frame):
         # Login Button
         login_button = ttk.Button(self, text="Login", command=self.check_login, style="TButton")
         login_button.place(relx=0.5, rely=0.9, anchor="center")
+        
+        # Bind Enter key to the login button
+        self.bind_all("<Return>", self.on_enter_key)
+
+    def on_enter_key(self, event):
+        self.check_login()
 
     def check_login(self):
         username = self.username_entry.get()
