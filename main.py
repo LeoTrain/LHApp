@@ -8,7 +8,7 @@ class MainApp(tk.Tk):
     def __init__(self):
         tk.Tk.__init__(self)
         self.title("Stacked Widget Example")
-        self.geometry("400x300")
+        self.geometry("1080x720")
 
         self.container = tk.Frame(self)
         self.container.pack(fill="both", expand=True)
