@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import messagebox
 from PIL import Image, ImageTk
+import csv
 
 class LoginScreen(tk.Frame):
     def __init__(self, parent, controller):
@@ -35,8 +36,15 @@ class LoginScreen(tk.Frame):
     def check_login(self):
         username = self.username_entry.get()
         password = self.password_entry.get()
-        if username == "admin" and password == "root":  # Replace with actual validation logic
-            self.controller.current_user = username
-            self.controller.show_frame("WelcomeScreen")
-        else:
-            messagebox.showerror("Login Error", "Incorrect Username or Password")
+        
+        # CSV Datei lesen und username-password checken
+        with open("data/user_data.csv", newline='') as file:
+            reader = csv.DictReader(file)
+            for row in reader:
+                if row['username'] == username and row['password'] == password:
+                    self.controller.current_user = username
+                    self.controller.show_frame("WelcomeScreen")
+                    return
+
+        # Falls username oder password falsch sind
+        messagebox.showerror("Login Fehler", "Falscher Benutzername oder Passwort")

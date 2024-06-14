@@ -22,7 +22,7 @@ class MainApp(tk.Tk):
             self.frames[page_name] = frame
             frame.place(relwidth=1, relheight=1)
 
-        self.show_frame("ScoreScreen")
+        self.show_frame("LoginScreen")
 
     def show_frame(self, page_name):
         frame = self.frames[page_name]
