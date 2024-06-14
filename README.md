@@ -2,7 +2,7 @@
 
 # LHApp
 Unsere coole App
-> Hannes: Das leben ist unschön
+> Hannes: Das leben ist unschön <br/>
 > Leo: Dann machen wir eine schöne App 
 
 ## Benutzung
