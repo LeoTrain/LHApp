@@ -2,6 +2,7 @@ import tkinter as tk
 from screens.LoginScreen import LoginScreen
 from screens.WelcomeScreen import WelcomeScreen
 from screens.TaskScreen import TaskScreen
+from screens.ScoreScreen import ScoreScreen
 
 class MainApp(tk.Tk):
     def __init__(self):
@@ -11,15 +12,17 @@ class MainApp(tk.Tk):
 
         self.container = tk.Frame(self)
         self.container.pack(fill="both", expand=True)
+        
+        self.current_user = None
 
         self.frames = {}
-        for F in (LoginScreen, WelcomeScreen, TaskScreen):
+        for F in (LoginScreen, WelcomeScreen, TaskScreen, ScoreScreen):
             page_name = F.__name__
             frame = F(parent=self.container, controller=self)
             self.frames[page_name] = frame
             frame.place(relwidth=1, relheight=1)
 
-        self.show_frame("LoginScreen")
+        self.show_frame("ScoreScreen")
 
     def show_frame(self, page_name):
         frame = self.frames[page_name]

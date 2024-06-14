@@ -36,6 +36,7 @@ class LoginScreen(tk.Frame):
         username = self.username_entry.get()
         password = self.password_entry.get()
         if username == "admin" and password == "root":  # Replace with actual validation logic
+            self.controller.current_user = username
             self.controller.show_frame("WelcomeScreen")
         else:
             messagebox.showerror("Login Error", "Incorrect Username or Password")
