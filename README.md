@@ -7,11 +7,14 @@ python3 main.py
 ```
 
 ## To-Do-Liste:
-- [ ] Datenbankeinrichtung für Login
+- Datenbankeinrichtung für Login:
   - [ ] Verschlüsseln
   - [ ] Verschlüsselung überprüfen
 - [ ] Styling verändern
 - [ ] Dunkelmodus/Helldunkelmodus-Umschaltung
+- Task kreation beenden:
+  - [ ] Task done knopf kreieren oder weiterbilder ka ob es möglich ist
+  - [ ] Punkte Anzahl pro Task möglich machen
 
 ## Done:
 - [x] Klassen in eigene Dateien ausgelagert
