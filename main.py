@@ -1,16 +1,30 @@
-from kivy.app import App
-from kivy.uix.screenmanager import ScreenManager
-from screens.py.LoginScreen import LoginScreen
-from screens.py.WelcomeScreen import WelcomeScreen
-from screens.py.PageOne import PageOne
+import tkinter as tk
+from screens.LoginScreen import LoginScreen
+from screens.WelcomeScreen import WelcomeScreen
+from screens.TaskScreen import TaskScreen
 
-class MainApp(App):
-    def build(self):
-        sm = ScreenManager()
-        sm.add_widget(PageOne(name='pageone'))
-        sm.add_widget(LoginScreen(name='login'))
-        sm.add_widget(WelcomeScreen(name='welcome'))
-        return sm
+class MainApp(tk.Tk):
+    def __init__(self):
+        tk.Tk.__init__(self)
+        self.title("Stacked Widget Example")
+        self.geometry("400x300")
 
-if __name__ == '__main__':
-    MainApp().run()
+        self.container = tk.Frame(self)
+        self.container.pack(fill="both", expand=True)
+
+        self.frames = {}
+        for F in (LoginScreen, WelcomeScreen, TaskScreen):
+            page_name = F.__name__
+            frame = F(parent=self.container, controller=self)
+            self.frames[page_name] = frame
+            frame.place(relwidth=1, relheight=1)
+
+        self.show_frame("LoginScreen")
+
+    def show_frame(self, page_name):
+        frame = self.frames[page_name]
+        frame.tkraise()
+
+if __name__ == "__main__":
+    app = MainApp()
+    app.mainloop()
