@@ -24,13 +24,12 @@ class LoginScreen(tk.Frame):
         style.configure(
             "TButton",
             foreground="white",
-            background="#8B4513",
             font=("Arial", 12, "bold"),
             borderwidth=0
         )
         style.map(
             "TButton",
-            background=[('active', '#A0522D')]  # Sienna active background color
+            background=[('!active', '#8B4513'), ('active', '#A0522D')]  # Sienna active background color
         )
         style.configure(
             "TLabel",
@@ -57,6 +56,9 @@ class LoginScreen(tk.Frame):
         
         # Bind Enter key to the login button
         self.bind_all("<Return>", self.on_enter_key)
+
+        # Automatically set focus to the first entry field
+        self.username_entry.focus_set()
 
     def on_enter_key(self, event):
         self.check_login()
