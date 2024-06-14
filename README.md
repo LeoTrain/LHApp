@@ -6,7 +6,7 @@
 - [App beschreibung](#LHApp)
 - [Benutzung](##Benutzung)
 - [Aufgaben](##Aufgaben)
-  - [To-Do's](###To-Do-Liste:)
+  - [To-Do's](###To-Do-Liste)
   - [Done](###Done)
   - [Ideen](###Ideen)
 
