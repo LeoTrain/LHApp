@@ -46,6 +46,8 @@ class TaskScreen(tk.Frame):
         self.tree.column("Points", width=50, anchor="center")
         
         self.tree.place(relx=0.5, rely=0.5, anchor="center", width=250, height=200)
+        
+        self.tree.bind("<Button-1>", self.on_treeview_click)
 
         new_task_button = ttk.Button(self, text="Neue Aufgabe", command=lambda: self.create_new_task(), style="TButton")
         new_task_button.place(relx=0.3, rely=0.9, anchor="center")
@@ -102,3 +104,22 @@ class TaskScreen(tk.Frame):
         self.load_tasks()
         super().tkraise()
 
+    def on_treeview_click(self, event):
+        # Get the region clicked
+        region = self.tree.identify("region", event.x, event.y)
+        if region == "cell":
+            column = self.tree.identify_column(event.x)
+            if column == "#2":  # Column 2 == "Erledigt"
+                item = self.tree.identify_row(event.y)
+                self.toggle_task_status(item)
+    
+    def toggle_task_status(self, item):
+        # Get current values
+        current_values = self.tree.item(item, "values")
+        task, status, points = current_values
+
+        # Toggle status
+        new_status = "\u2713" if status != "\u2713" else " "
+        
+        # Update the item in the treeview
+        self.tree.item(item, values=(task, new_status, points))
