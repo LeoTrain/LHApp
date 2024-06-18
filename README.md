@@ -30,7 +30,6 @@ python3 main.py
 - [ ] Styling verändern
 - [ ] Dunkelmodus/Helldunkelmodus-Umschaltung
 - **Task kreation beenden**:
-  - [ ] Punkte Anzahl pro Task möglich machen
 
 ### Done:
 - [x] ~~Klassen in eigene Dateien ausgelagert~~
@@ -39,6 +38,7 @@ python3 main.py
 - [x] ~~Konto einführung in CSV Datei~~
 - [x] ~~Styling angefangen (wird schwer viel mehr zu machen)~~
 - [x] ~~Task done knopf kreieren oder weiterbilder ka ob es möglich ist~~
+- [x] ~~Punkte Anzahl pro Task möglich machen~~
 
 ### Ideen:
 - [ ] Authentifizierung mit Zwei-Faktor-Authentifizierung (2FA)
