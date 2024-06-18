@@ -1,8 +1,19 @@
-![logo](data/logo.png)
+<p align="center">
+  <img src="data/logo.png" alt="logo">
+</p>
+
+## Table of content
+- [App beschreibung](#LHApp)
+- [Benutzung](##Benutzung)
+- [Aufgaben](##Aufgaben)
+  - [To-Do's](###To-Do-Liste)
+  - [Done](###Done)
+  - [Ideen](###Ideen)
 
 # LHApp
-Unsere coole App
-> Hannes: Das leben ist unschöne<br/>
+Unsere Super App
+
+> Hannes: Das leben ist unschön <br/>
 > Leo: Dann machen wir eine schöne App 
 
 ## Benutzung
@@ -10,7 +21,9 @@ Unsere coole App
 python3 main.py
 ```
 
-## To-Do-Liste:
+## Aufgaben
+
+### To-Do-Liste:
 - **Datenbankeinrichtung für Login**:
   - [ ] Verschlüsseln
   - [ ] Verschlüsselung überprüfen
@@ -20,14 +33,14 @@ python3 main.py
   - [ ] Task done knopf kreieren oder weiterbilder ka ob es möglich ist
   - [ ] Punkte Anzahl pro Task möglich machen
 
-## Done:
+### Done:
 - [x] ~~Klassen in eigene Dateien ausgelagert~~
 - [x] ~~Einfache Funktion zur Überprüfung der Anmeldeinformationen im Login-Bildschirm integriert~~
 - [x] ~~Temporäre Speicherung der Daten in Dateien~~
 - [x] ~~Konto einführung in CSV Datei~~
 - [x] ~~Styling angefangen (wird schwer viel mehr zu machen)~~
 
-## Ideen für zukünftige Funktionen:
+### Ideen:
 - [ ] Authentifizierung mit Zwei-Faktor-Authentifizierung (2FA)
 - [ ] Benutzerprofile erstellen und verwalten
 - [ ] Passwort-Wiederherstellungsfunktion
