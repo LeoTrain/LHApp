@@ -1,0 +1,34 @@
+{
+  "users": {
+    "admin": {
+      "tasks": [
+        {
+          "task": "Finish homework",
+          "points": 10,
+          "notes": "Math exercises",
+          "done": false
+        }
+      ],
+      "completed_tasks": [],
+      "total_points": 0
+    },
+    "ftleo": {
+      "tasks": [],
+      "completed_tasks": [
+        {
+          "task": "Test",
+          "points": "10",
+          "notes": null,
+          "done": true,
+          "completed_at": "2024-06-19 01:28:00.470665"
+        }
+      ],
+      "total_points": 10
+    },
+    "hns_hpstr": {
+      "tasks": [],
+      "completed_tasks": [],
+      "total_points": 0
+    }
+  }
+}
