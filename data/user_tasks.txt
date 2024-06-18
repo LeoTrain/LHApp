@@ -1,2 +1,0 @@
-ftleo: test
-admin: test, test2

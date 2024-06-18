@@ -1,16 +1,17 @@
 import tkinter as tk
 from tkinter import ttk
 from tkinter import simpledialog, messagebox
-import csv
 
 class TaskScreen(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         self.controller = controller
+        self.user_tasks = "data/user_tasks.txt"
+        self.completed_tasks = "data/completed_tasks.txt"
         self.initUI()
 
     def initUI(self):
-        self.configure(bg="#f0f0f0")  # Background color
+        self.configure(bg="#f0f0f0")
 
         # Define a style for labels and buttons
         style = ttk.Style()
@@ -23,12 +24,12 @@ class TaskScreen(tk.Frame):
         )
         style.map(
             "TButton",
-            background=[('active', '#A0522D')]  # Sienna active background color
+            background=[('active', '#A0522D')]
         )
         style.configure(
             "TLabel",
             background="#f0f0f0",
-            foreground="#f0f0f0",
+            foreground="#8B4513",
             font=("Arial", 20)
         )
 
@@ -46,24 +47,18 @@ class TaskScreen(tk.Frame):
         self.tree.column("Points", width=50, anchor="center")
         
         self.tree.place(relx=0.5, rely=0.5, anchor="center", width=250, height=200)
-        
         self.tree.bind("<Button-1>", self.on_treeview_click)
 
-        new_task_button = ttk.Button(self, text="Neue Aufgabe", command=lambda: self.create_new_task(), style="TButton")
+        new_task_button = ttk.Button(self, text="Neue Aufgabe", command=self.create_new_task, style="TButton")
         new_task_button.place(relx=0.3, rely=0.9, anchor="center")
         
-        # Button to return to WelcomeScreen
         back_button = ttk.Button(self, text="Zurück zum Willkommen Bildschirm", command=lambda: self.controller.show_frame("WelcomeScreen"), style="TButton")
         back_button.place(relx=0.7, rely=0.9, anchor="center")
 
-        self.file_path = "data/user_tasks.txt"
-        
     def create_new_task(self):
-        new_task = simpledialog.askstring("Input", "Neue Aufgabe:",
-                                    parent=self.controller)
-        
+        new_task = simpledialog.askstring("Input", "Neue Aufgabe:", parent=self.controller)
         if new_task:            
-            with open(self.file_path, 'r') as file:
+            with open(self.user_tasks, 'r') as file:
                 lines = file.readlines()
 
             username_found = False
@@ -76,43 +71,43 @@ class TaskScreen(tk.Frame):
             if not username_found:
                 lines.append(f"{self.controller.current_user}: {new_task}\n")
             
-            with open(self.file_path, 'w') as file:
+            with open(self.user_tasks, 'w') as file:
                 file.writelines(lines)
             
             messagebox.showinfo("Success", "Aufgabe hinzugefügt")
-
             self.load_tasks()
 
     def load_tasks(self):
-        with open(self.file_path, 'r') as file:
-            lines = file.readlines()
-        for line in lines:
-            if line.startswith(f"{self.controller.current_user}:"):
-                tasks = line.split(": ")[1].strip().split(", ")
-                for task in tasks:
-                    self.tree.insert("", "end", values=(task, "\u2713", "1"))
+        self.tree.delete(*self.tree.get_children())
+        try:
+            with open(self.user_tasks, 'r') as file:
+                lines = file.readlines()
+        except FileNotFoundError:
+            lines = []
 
-    def get_tasks_for_user(self, username):
-        sample_tasks = {
-            "admin": [("Task A", "Erledigt"), ("Task B", "Nicht Erledigt")],
-            "ftleo": [("Task A", "Erledigt"), ("Task B", "Erledigt")],
-            "hns_hpstr": [("Task A", "Nicht Erledigt"), ("Task B", "Nicht Erledigt")]
-        }
-        return sample_tasks.get(username, [])
+        for line in lines:
+            if ": " in line:
+                username, tasks_str = line.split(": ", 1)
+                if username == self.controller.current_user:
+                    tasks = tasks_str.strip().split(", ")
+                    for task in tasks:
+                        print(task)
+                        if task.strip():
+                            self.tree.insert("", "end", values=(task, " ", "1"))
 
     def tkraise(self):
         self.load_tasks()
         super().tkraise()
 
     def on_treeview_click(self, event):
-        # Get the region clicked
         region = self.tree.identify("region", event.x, event.y)
         if region == "cell":
             column = self.tree.identify_column(event.x)
-            if column == "#2":  # Column 2 == "Erledigt"
+            if column == "#2":
                 item = self.tree.identify_row(event.y)
                 self.toggle_task_status(item)
-    
+                self.load_tasks()
+
     def toggle_task_status(self, item):
         # Get current values
         current_values = self.tree.item(item, "values")
@@ -123,3 +118,35 @@ class TaskScreen(tk.Frame):
         
         # Update the item in the treeview
         self.tree.item(item, values=(task, new_status, points))
+        
+        with open(self.user_tasks, 'r') as file:
+            lines = file.readlines()
+        
+        with open(self.user_tasks, 'w') as file:
+            for line in lines:
+                if self.controller.current_user in line:
+                    username, tasks_str = line.split(": ", 1)
+                    tasks = tasks_str.strip().split(", ")
+                    if task in tasks:
+                        tasks.remove(task)
+                    if tasks:  # If there are still tasks left
+                        new_line = f"{self.controller.current_user}: {', '.join(tasks).strip()}\n"
+                        file.write(new_line)
+                    else:  # No tasks left, remove the line entirely
+                        continue
+                else:
+                    file.write(line)
+        
+        if new_status == "\u2713":
+            with open(self.completed_tasks, 'a') as file:
+                file.write(f"{self.controller.current_user}: {task}\n")
+        else:
+            with open(self.completed_tasks, 'r') as file:
+                lines = file.readlines()
+            
+            with open(self.completed_tasks, 'w') as file:
+                for line in lines:
+                    if f"{self.controller.current_user}: {task}" not in line:
+                        file.write(line)
+
+
