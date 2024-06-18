@@ -57,25 +57,28 @@ class TaskScreen(tk.Frame):
 
     def create_new_task(self):
         new_task = simpledialog.askstring("Input", "Neue Aufgabe:", parent=self.controller)
-        if new_task:            
+        point_amount = simpledialog.askinteger("Input", "Punkteanzahl:", parent=self.controller)
+
+        if new_task and point_amount is not None:
             with open(self.user_tasks, 'r') as file:
                 lines = file.readlines()
 
             username_found = False
             for i, line in enumerate(lines):
                 if self.controller.current_user in line:
-                    lines[i] = line.strip() + f", {new_task}\n"
+                    lines[i] = line.strip() + f", {new_task}|{point_amount}\n"
                     username_found = True
                     break
-            
+
             if not username_found:
-                lines.append(f"{self.controller.current_user}: {new_task}\n")
-            
+                lines.append(f"{self.controller.current_user}: {new_task}|{point_amount}\n")
+
             with open(self.user_tasks, 'w') as file:
                 file.writelines(lines)
-            
+
             messagebox.showinfo("Success", "Aufgabe hinzugefügt")
             self.load_tasks()
+
 
     def load_tasks(self):
         self.tree.delete(*self.tree.get_children())
@@ -90,10 +93,15 @@ class TaskScreen(tk.Frame):
                 username, tasks_str = line.split(": ", 1)
                 if username == self.controller.current_user:
                     tasks = tasks_str.strip().split(", ")
-                    for task in tasks:
-                        print(task)
-                        if task.strip():
-                            self.tree.insert("", "end", values=(task, " ", "1"))
+                    for task_entry in tasks:
+                        if "|" in task_entry:
+                            task, points = task_entry.split("|")
+                            if task.strip():
+                                self.tree.insert("", "end", values=(task, " ", points))
+                        else:
+                            if task_entry.strip():
+                                self.tree.insert("", "end", values=(task_entry, " ", "1"))
+
 
     def tkraise(self):
         self.load_tasks()
