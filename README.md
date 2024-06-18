@@ -30,6 +30,7 @@ python3 main.py
 - [ ] Styling verändern
 - [ ] Dunkelmodus/Helldunkelmodus-Umschaltung
 - **Task kreation beenden**:
+  - [ ] TaskManager Classe einbauen
 
 ### Done:
 - [x] ~~Klassen in eigene Dateien ausgelagert~~
